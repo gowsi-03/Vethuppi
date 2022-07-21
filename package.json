@@ -1,0 +1,27 @@
+{
+  "name": "vethuppi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gowsi-03/Vethuppi.git"
+  },
+  "author": "gowsi03",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gowsi-03/Vethuppi/issues"
+  },
+  "homepage": "https://github.com/gowsi-03/Vethuppi#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.5"
+  }
+}
