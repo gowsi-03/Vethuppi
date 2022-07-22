@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const { db } = require("../models/admin/product");
 
 const Admin = require("../models/admin/product");
 
@@ -58,12 +59,13 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  const id = req.params.id;
+  //const id = req.params.id;
+  const pro_id = req.params.id
   //const details = id;
 
   try {
-    await Admin.findByIdAndDelete(id);
-    res.status(203).json(`Id ${id} deleted`);
+    await Admin.findByIdAndDelete(pro_id);
+    res.status(203).json(`Id ${pro_id} deleted`);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
