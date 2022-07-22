@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Add post by user
 exports.create = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const addPost = new Admin({
     title: req.body.title,
     desc: req.body.desc,
@@ -21,7 +21,7 @@ exports.create = async (req, res) => {
       res.status(201).json(addPost);
     })
     .catch((err) => {
-      res.status(400).json({ message: err.message });
+      res.status(404).json({ message: err.message });
     });
 };
 
@@ -40,7 +40,7 @@ exports.findOne = async (req, res) => {
   try {
     const fpost = await Admin.findById(id);
 
-    res.status(404).json(fpost);
+    res.status(200).json(fpost);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
@@ -48,31 +48,23 @@ exports.findOne = async (req, res) => {
 
 exports.update = async (req, res) => {
   const id = req.params.id;
+  const update = req.body;
   try {
-    await Admin.findByIdAndUpdate(
-      { id },
-      {
-        title: req.body.title,
-        desc: req.body.desc,
-        img: req.body.img,
-        price: req.body.price,
-        extraOptions: req.body.extraOptions,
-      }
-    );
-    res.status(202).json({ up: up });
+    const result = await Admin.findByIdAndUpdate(id, update);
+    res.status(200).json(`Id ${id} updated`);
   } catch (err) {
-    res.status(401).json({ message: err.message });
+    res.status(404).json({ message: err.message });
   }
 };
 
 exports.delete = async (req, res) => {
   const id = req.params.id;
-  const details = { _id: new ObjectID(id) };
+  //const details = id;
 
   try {
-    await Student.findOneAndRemove({ details: details });
-    res.status(203).json({ details: details });
+    await Admin.findByIdAndDelete(id);
+    res.status(203).json(`Id ${id} deleted`);
   } catch (error) {
-    res.status(402).json({ message: error.message });
+    res.status(404).json({ message: error.message });
   }
 };
